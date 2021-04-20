@@ -38,17 +38,19 @@ login: kali
 password: kali
 ```
 
-From a terminal, you can also configure the keyboard to `azerty` if you're using a French keyboard
+> ⚠️ The `q` key on a `azerty` keyboard corresponds to the `a` key on a `qwerty` keyboard.
+
+From a terminal, you can now change the keyboard to `azerty` if you're using a French keyboard
 
 ```sh
-$ sudo loadkeys fr
+$ setxkbmap fr
 $ sudo dpkg-reconfigure keyboard-configuration
 ```
 
 Choose the following options:
 
 - Generic 105-key (Intl) PC
-- French
+- Other
 - French
 - The default for the keyboard layout
 - No compose key
@@ -77,7 +79,20 @@ metasploitable3-ub1404 login: vagrant
 password: vagrant
 ```
 
-You can repeat the steps above in order to configure the keyboard to `azerty` if needed.
+Configure the keyboard in French if needed:
+
+```sh
+$ sudo loadkeys fr
+$ sudo dpkg-reconfigure keyboard-configuration
+```
+
+Choose the following options:
+
+- Generic 105-key (Intl) PC
+- French
+- French
+- The default for the keyboard layout
+- No compose key
 
 As previously, to retrieve the IP address of the machine use the following command:
 
@@ -91,7 +106,10 @@ You are ready to take up the challenge, head over to the [Wiki](https://github.c
 
 **SSH (Optionnal)**
 
-You can configure port-forwarding (only required over NAT Network) in order to access to access remotly to the virtual machine terminal using your host machine.
+If you are using a Windows 10 machine, please check if the OpenSSH client is installed.
+To do so, please follow the Microsoft's instructions located [here](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse#install-openssh-using-windows-settings).
+
+Then, you can configure port-forwarding (only required over NAT Network) in order to access to access remotly to the virtual machine terminal using your host machine.
 
 `Virtual Box` >> `Preferences...` >> `Network` >> `NatNetwork` >> `Port Forwarding`
 
@@ -121,4 +139,52 @@ $ ssh -p 2522 kali@127.0.0.1
 
 ```
 $ ssh -p 2523 vagrant@127.0.0.1
+```
+
+In order to avoid having to type the password for each SSH connection you can register your host machine as a trusted machine with Kali Linux and Metasploitable.
+
+1. Open a terminal (Powershell on Windows) and generate a new SSH keypair using the `ssh-keygen` command:
+
+```
+$ ssh-keygen
+```
+
+The program will ask you for a passphrase and a location where to save the new key. Using the suggested default path is recommended because all other tools will look for it there.
+
+2. Copy your public key to Kali Linux and Ubuntu machines:
+
+> Windows instructions
+
+```
+> type $env:USERPROFILE\.ssh\id_rsa.pub | ssh -p 2522 kali@127.0.0.1 "cat >> .ssh/authorized_keys"
+```
+
+```
+> type $env:USERPROFILE\.ssh\id_rsa.pub | ssh -p 2523 vagrant@127.0.0.1 "cat >> .ssh/authorized_keys"
+```
+
+> Mac instructions
+
+```
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 2522 kali@127.0.0.1
+```
+
+```
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 2523 vagrant@127.0.0.1
+```
+
+**Host (Optionnal)**
+
+As we will often use IP addresses of machines through the workshop, you can also configure the hosts file to use aliases on the Kali Linux machine.
+
+```
+$ ssh -p 2522 kali@127.0.0.1
+$ sudo vim /etc/hosts
+```
+
+Add these two lines to the file
+
+```
+10.0.2.15       ubuntu
+10.0.2.5        windows
 ```
