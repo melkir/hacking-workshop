@@ -95,10 +95,10 @@ You can configure port-forwarding (only required over NAT Network) in order to a
 
 `Virtual Box` >> `Preferences...` >> `Network` >> `NatNetwork` >> `Port Forwarding`
 
-| Name | Protocol | Host IP   | Host Port | Guest IP  | Guest Port |
-| ---- | -------- | --------- | --------- | --------- | ---------- |
-| SSH  | TCP      | 127.0.0.1 | 2522      | 10.0.2.4  | 22         |
-| SSH  | TCP      | 127.0.0.1 | 2523      | 10.0.2.15 | 22         |
+| Name       | Protocol | Host IP   | Host Port | Guest IP  | Guest Port |
+| ---------- | -------- | --------- | --------- | --------- | ---------- |
+| SSH Kali   | TCP      | 127.0.0.1 | 2522      | 10.0.2.4  | 22         |
+| SSH Ubuntu | TCP      | 127.0.0.1 | 2523      | 10.0.2.15 | 22         |
 
 <br />
 
