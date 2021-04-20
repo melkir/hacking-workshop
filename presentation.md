@@ -925,6 +925,7 @@ Accordez chaque terme à sa définition :
 3. Il augmente le trafic vers le site de l'attaquant en manipulant les moteurs de recherche.
 4. Une page Web qui répertorie de nombreux mots clés, dans l'espoir d'augmenter son classement sur les moteurs de recherche. Un script sur la page redirige vers la page de l'attaquant.
 
+^ 4, 1, 3, 2
 ^ Trojan = Cheval de Troie
 
 ---
@@ -1219,3 +1220,430 @@ Quels événements doivent déclencher un test de pénétration ?
 # Hacking Workshop
 
 [https://github.com/melkir/hacking-workshop](https://github.com/melkir/hacking-workshop)
+
+---
+
+![fb-what-is-https](https://user-images.githubusercontent.com/3305685/113394136-ff72f200-9397-11eb-8dab-c34b1cb0a379.png)
+
+^ Discutons du HTTPS et de la manière dont il est intégré au navigateur Web.
+
+---
+
+# Qu'est-ce que HTTPS ?
+
+Le protocole de transfert hypertexte sécurisé (HTTPS) est la version sécurisée de HTTP.
+
+Il s'agit du protocole principal utilisé pour envoyer des données entre un navigateur web et un site web.
+
+<sub>Source: [Cloudflare - What is HTTPS?](https://www.cloudflare.com/fr-fr/learning/ssl/what-is-https/)</sub>
+
+---
+
+# Qu'est-ce que HTTPS ?
+
+Le traffic HTTPS est chiffré afin d'augmenter la sécurité du transfert de données. Ce chiffrement est particulièrement important lorsque les utilisateurs transmettent des données sensibles.
+
+- Connexion à un compte bancaire
+- Connexion à un service de messagerie électronique
+- Connexion à une compagnie d'assurance maladie.
+
+^ Tous les sites web, en particulier ceux qui nécessitent des informations de connexion, doivent utiliser HTTPS.
+
+---
+
+# Qu'est-ce que HTTPS ?
+
+Ce type de système de sécurité utilise deux clés différentes pour chiffer les communications entre deux parties :
+
+- La clé privée - cette clé est contrôlée par le propriétaire d'un site web et maintenue privée. Cette clé réside sur un serveur web. Elle est utilisée pour déchiffrer les informations chiffrées par la clé publique.
+
+- La clé publique - cette clé est disponible pour tous ceux qui souhaitent interagir avec le serveur de manière sécurisée. Les informations chiffrées par la clé publique ne peuvent être déchiffrées que par la clé privée.
+
+^ Les données sont chiffrées grâce à la cryptographie asymétrique et ainsi envoyées de manière sécurisée.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0003](https://user-images.githubusercontent.com/3305685/113414866-4542b100-93be-11eb-826a-c3cfed8b791f.jpg)
+
+^ Les communications qui ont lieu en HTTP se font en texte brut, elles sont donc accessibles à toute personne disposant des outils appropriés (Man-In-The-Middle).
+
+^ Une personne ayant accès au même réseau Wi-Fi (ex: Wi-Fi public), sera capable de "renifler" les paquets qui transitent sur le réseau avec un outil tel que WireShark.
+
+---
+
+# Wireshark: Attaque de l'homme du milieu
+
+![inline](https://user-images.githubusercontent.com/3305685/113408701-21786e80-93b0-11eb-8ef2-5f75ae04cd2f.jpg)
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0004](https://user-images.githubusercontent.com/3305685/113414868-45db4780-93be-11eb-9750-976330da916d.jpg)
+
+---
+
+# Pourquoi le HTTPS est-il important ?
+
+[.column]
+
+HTTPS élimine également la possibilité pour des tiers non modérés, d'injecter du contenu sur une page web.
+
+Par exemple, sans chiffrement, il est possible pour un FAI d'injecter une publicité dans une pages web sans l'approbation du propriétaire du site.
+
+[.column]
+
+![inline](https://www.cloudflare.com/img/learning/security/glossary/what-is-https/third-party-content.png)
+
+^ Les bénéfices issus des annonces publicitaires et le contrôle qualité de ces annonces ne sont en aucun cas partagés avec le propriétaire du site.
+
+---
+
+![inline](https://user-images.githubusercontent.com/3305685/113395011-84124000-9399-11eb-93d3-be6fdb1b8567.png)
+
+^ Mars 2021 | France: 94% des pages sont chargées via HTTPS
+
+^ https://transparencyreport.google.com/https/overview
+
+---
+
+# HTTPS Quiz
+
+Quels sont les éléments qui peuvent être chiffrées par HTTPS ?
+
+- [ ] URL de la requête
+- [ ] Paramètres de la requête
+- [ ] En-têtes
+- [ ] Cookies
+- [ ] Adresses des hôtes
+- [ ] Numéros de port
+- [ ] La quantité de données transférées
+- [ ] La durée de la session
+
+^ Vrai, Vrai, Vrai, Vrai
+
+^ Les adresses et n° de port sont utilisées pour diriger le trafic.
+
+^ La quantité de données transférées et la durée de la session peuvent être déterminées en observant le trafic.
+
+---
+
+# En quoi HTTPS est-il différent de HTTP ?
+
+Techniquement parlant, HTTPS n'est pas un protocole distinct de HTTP. Il utilise simplement le **chiffrement** TLS/SSL sur le protocole HTTP.
+
+HTTPS repose sur la transmission de **certificats** TLS/SSL, qui vérifient qu'un fournisseur particulier est bien celui qu'il prétend être.
+
+^ Lorsqu'un utilisateur se connecte à une page web, la page web envoie son certificat SSL qui contient la clé publique nécessaire pour démarrer la session sécurisée.
+
+---
+
+# Comment fonctionne le SSL/TLS ?
+
+- Afin de garantir un degré élevé de **confidentialité**, le SSL chiffre les données transmises sur le Web. Cela signifie que quiconque tente d'intercepter ces données ne verra qu'un mélange confus de caractères quasiment impossible à déchiffrer.
+
+- Le SSL lance un processus d'**authentification** appelé handshake entre deux dispositifs de communication pour s'assurer que les deux appareils sont vraiment ceux qu'ils prétendent être.
+
+- Le SSL signe également numériquement les données afin d'assurer l'**intégrité** des données, en vérifiant que les données ne sont pas falsifiées avant d'atteindre leur destinataire prévu.
+
+^ **La non-répudiation**: Aucun tiers ne doit pouvoir s'attribuer les actions d'un autre utilisateur.
+
+---
+
+# Comment un site web commence-t-il à utiliser HTTPS ?
+
+De nombreux hébergeurs de sites web et d'autres services proposent des certificats TLS/SSL contre rémunération. Ces certificats seront souvent partagés entre de nombreux clients.
+
+Des certificats plus chers sont disponibles et peuvent être enregistrés individuellement sur des propriétés web particulières.
+
+---
+
+# Cryptographie asymétrique
+
+[.column]
+
+![inline](https://user-images.githubusercontent.com/3305685/113476730-95cd1380-947d-11eb-8772-cf5ceee6baa4.png)
+
+[.column]
+
+![inline](https://user-images.githubusercontent.com/3305685/113476732-96fe4080-947d-11eb-808e-b8de8066a6fb.png)
+
+^ 1: Alice génère deux clefs. La clef publique (verte) qu'elle envoie à Bob et la clef privée (rouge) qu'elle conserve précieusement sans la divulguer à quiconque.
+
+^ 2: Bob chiffre le message avec la clef publique d'Alice et envoie le texte chiffré.
+
+^ 3: Alice déchiffre le message grâce à sa clef privée.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0010](https://user-images.githubusercontent.com/3305685/113414879-483da180-93be-11eb-9649-97aaab6fbe66.jpg)
+
+^ Un problème essentiel de la cryptographie asymétrique est de savoir comment Alice peut obtenir la clé publique de Bob.
+
+^ La norme est d'utiliser un certificat émis par une autorité de certification, que nous appelons l'AC.
+
+^ Tout d'abord, chaque entité doit installer la clé publique du l'AC.
+
+^ Ensuite, Bob peut demander à l'autorité de certification de générer un certificat pour sa clé publique.
+
+^ L'autorité de certification garde pour elle la clé privée de signature.
+
+^ L'autorité de certification signe la clé publique de Bob à l'aide de sa clé privée de signature et la signature est intégrée au certificat.
+
+^ Bob peut donc maintenant présenter le certificat à Alice.
+
+^ Et comme Alice a la clé publique de l'autorité de certification, elle peut vérifier que la signature a été construite correctement.
+
+^ Ce qui signifie que la clé publique de Bob a été certifiée par l'autorité de certification.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0011](https://user-images.githubusercontent.com/3305685/113414880-483da180-93be-11eb-9ab0-0000bc587891.jpg)
+
+^ Voici un exemple de certificat de clé publique. Passons en revue quelques informations importantes.
+
+^ Premièrement, il y a un numéro de série unique.
+
+^ Deuxièmement, il y a une période de validité.
+
+^ Enfin, il y a une clé publique et une signature produites par l'autorité de certification.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0012](https://user-images.githubusercontent.com/3305685/113414881-48d63800-93be-11eb-81a3-fc6042a8a73d.jpg)
+
+^ Voici un exemple d'informations de certificat qu'un utilisateur voit sur son ordinateur.
+
+^ Il indique que le certificat concerne la clé publique de mail.google.com.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0013](https://user-images.githubusercontent.com/3305685/113414883-48d63800-93be-11eb-8c7d-f48a443498b6.jpg)
+
+^ Un certificat est destiné à une entité ou à un sujet identifié par le nom commun.
+
+^ Qu'est-ce qu'un nom commun ? Un nom commun peut être un nom explicite, par exemple cc.gatech.edu.
+
+^ Il peut aussi être un wildcard, par exemple \*.gatech.edu.
+
+^ Si un caractère générique est utilisé, il ne peut être que le composant le plus à gauche, et il ne correspond pas au point.
+
+^ Par exemple : \*.a.com correspond à x.a.com mais pas à y.x.a.com.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0014](https://user-images.githubusercontent.com/3305685/113414885-496ece80-93be-11eb-9c18-96054a2f8498.jpg)
+
+^ Il existe un grand nombre d'autorités de certification, et un navigateur accepte généralement les certificats de 60 autorités de certification de premier niveau et de 1200 autorités de certification intermédiaires.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0015](https://user-images.githubusercontent.com/3305685/113414886-4a076500-93be-11eb-8eac-f7ff84821b62.jpg)
+
+^ Le but de la poignée de main est d'authentifier le serveur et, de manière optimale, le navigateur.
+
+^ Plus important encore, à la fin, les deux entités auront une clé secrète partagée qui pourra être utilisée pour chiffrer le trafic HTTP.
+
+^ Le client envoie un message hello au serveur et la réponse du serveur comprend un certificat de clé publique.
+
+^ Le navigateur vérifie le certificat auprès de l'AC, afin d'authentifié le serveur avec sa clé publique.
+
+^ Avec la PK d'un serveur, le navigateur et le serveur effectue un échange de clés sécurisé (Diffie-Hellman) afin d'éviter les attaques de type "man-in-the-middle".
+
+^ Le résultat est qu'ils ont établis une clé secrète partagée et qu'ils peuvent maintenant utiliser cette clé secrète partagée pour chiffrer les données HTTP.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0016](https://user-images.githubusercontent.com/3305685/113414888-4a076500-93be-11eb-877f-7e0eb22b8424.jpg)
+
+^ HTTPS est indiqué dans l'interface graphique du navigateur.
+
+^ L'objectif est de permettre à l'utilisateur de savoir d'où vient une page.
+
+^ Il indique également aux utilisateurs que le contenu de la page est protégé, càd qu'un attaquant du réseau ne pourra pas voir ou modifier la page.
+
+^ En réalité, il existe plusieurs problèmes de sécurité.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0017](https://user-images.githubusercontent.com/3305685/113414891-4a9ffb80-93be-11eb-8069-e29b6645bb05.jpg)
+
+^ Lorsque l'icône de verrouillage est affichée sur le navigateur, cela signifie que tous les éléments de la page sont récupérés en utilisant HTTPS.
+
+^ Mais pour que le navigateur accepte cette connexion HTTPS, cela signifie que le navigateur a fait confiance au certificat et vérifié que le certificat est valide.
+
+^ De plus, l'URL du domaine correspond au CommonName ou au SubjectAlternativeName du certificat.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0018](https://user-images.githubusercontent.com/3305685/113414892-4b389200-93be-11eb-971a-189e70c7a0a3.jpg)
+
+^ Par exemple, le certificat de google.com peut simplement fournir une liste de noms alternatifs.
+
+---
+
+# HTTPS Disadvantages Quiz
+
+- [ ] La mise en cache du navigateur ne fonctionne pas correctement.
+- [ ] Vous devez acheter un certificat SSL
+- [ ] HTTPS utilise beaucoup de ressources serveur
+- [ ] Problèmes de mise en cache par proxy - la mise en cache publique ne peut pas avoir lieu.
+- [ ] HTTPS introduit des latences notables
+
+^ Faux
+
+^ Vrai
+
+^ Faux
+
+^ Vrai
+
+^ Faux
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0020](https://user-images.githubusercontent.com/3305685/113414895-4bd12880-93be-11eb-8a0a-7de4441d943b.jpg)
+
+^ Discutons de plusieurs problèmes de sécurité avec HTTPS et l'icône de verrouillage.
+
+^ Cela inclut le passage de HTTP à HTTPS.
+
+^ Les faux certificats.
+
+^ Tout d'abord, discutons de la mise à niveau de HTTP à HTTPS.
+
+^ Il existe une méthode d'attaque appelée "SSL stripped".
+
+^ Elle empêche le navigateur d'effectuer la mise à niveau de HTTP vers HTTPS.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0021](https://user-images.githubusercontent.com/3305685/113414897-4bd12880-93be-11eb-87fc-81f41f35a2af.jpg)
+
+^ Avec la suppression de SSL, le navigateur n'affiche aucune erreur de certificat SSL et l'utilisateur n'a aucune idée de l'existence d'une telle attaque.
+
+^ Cette attaque est également connue sous le nom d'attaque "HTTP downgrading".
+
+^ La connexion établie entre le navigateur de l'utilisateur victime et le serveur web est déclassée de HTTPS à HTTP.
+
+^ La connexion entre l'attaquant et la banque est sécurisée tandis que la connexion entre l'attaquant et le client est non sécurisée.
+
+^ Pour cela l'attaquant a accès à la page de connexion et peut modifier la réponse du serveur de HTTPS en HTTP, puis transmettre la page de connexion en HTTP au client.
+
+^ À partir de ce moment, toutes les requêtes de l'utilisateur sont envoyées en clair, et l'attaquant peut accéder aux données et collecter les informations d'identification.
+
+^ Alors que le serveur pense avoir utilisé une connexion sécurisée, cette connexion n'est en fait qu'entre le serveur web de la banque et l'attaquant.
+
+^ D'autre part, le navigateur de l'utilisateur utilise la connexion HTTP non sécurisée, pensant que c'est ce que le serveur web de la banque veut qu'il utilise.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0022](https://user-images.githubusercontent.com/3305685/113414898-4c69bf00-93be-11eb-9592-8e217cd4fa2d.jpg)
+
+^ La solution à l'attaque "SSL stripped" est d'utiliser HSTS, qui signifie Strict Transport Security.
+
+^ Elle indique au navigateur web de toujours utiliser HTTPS, même pour pour les sous-domaines.
+
+^ Il existe également une extension sur Chrome nommé HTTPS Everywhere.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0023](https://user-images.githubusercontent.com/3305685/113414899-4c69bf00-93be-11eb-8ad3-754ebdf8afe7.jpg)
+
+^ Lorsqu'un navigateur Web visite un site Web pour la première fois, le site Web peut indiquer au navigateur de toujours utiliser le protocole HTTPS.
+
+^ En d'autres termes, pour toute visite ultérieure, toutes les connexions doivent se faire en HTTPS, et les connexions HTTP seront rejetées.
+
+^ Un navigateur web peut également avoir une liste préchargée de sites web HSTS.
+
+^ Avant même que le navigateur web ne visite un site figurant sur cette liste, il sait qu'il doit utiliser HTTPS.
+
+^ Le drapeau HSTS, activé par un site web peut être effacé lorsque l'utilisateur sélectionne "Effacer les données privées".
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0024](https://user-images.githubusercontent.com/3305685/113414900-4d025580-93be-11eb-9c59-bd2e5e07cc78.jpg)
+
+^ Les certificats falsifiés constituent un autre problème de sécurité grave.
+
+^ Par exemple, si une autorité de certification est piratée, l'attaquant peut émettre des certificats falsifiés.
+
+^ Par exemple, pour Gmail, une fois qu'un certificat falsifié est émis, l'attaquant peut créer un faux site Web et s'appeler Gmail.
+
+^ Plusieurs pays ont été surpris à émettre des certificats non autorisés, par exemple pour Google, afin que les FAI de ces pays puissent jouer les intermédiaires entre un utilisateur et le véritable serveur Google.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0025](https://user-images.githubusercontent.com/3305685/113414902-4d025580-93be-11eb-93d6-b852628383f4.jpg)
+
+^ L'exemple suivant illustre bien ce phénomène.
+
+^ Supposons qu'un utilisateur veuille se connecter à une banque.
+
+^ Il y a un attaquant au milieu avec un faux certificat, il se fait donc passer pour la banque.
+
+^ L'utilisateur peut penser qu'il est connecté à la banque puisque le certificat le dit.
+
+^ Cependant le certificat étant faux, l'utilisateur est en fait connecté au méchant.
+
+^ Cela montre qu'avec un certificat douteux, un attaquant peut jouer à l'homme du milieu, même dans une connexion HTTPS.
+
+^ L'attaquant joue le rôle du serveur de la banque pour l'utilisateur et de l'utilisateur pour le serveur de la banque.
+
+^ Et les deux côtés des connexions sont en HTTPS.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0026](https://user-images.githubusercontent.com/3305685/113414903-4d025580-93be-11eb-826b-75657bf8e174.jpg)
+
+^ Une approche pour traiter les certificats falsifiés consiste à utiliser l'épinglage dynamique des clés publiques.
+
+^ Cela signifie qu'un site Web déclare les AC qui peuvent signer son certificat.
+
+^ Lorsqu'un navigateur visite un site Web pour la première fois, ce dernier lui indique la liste des autorités de certification autorisées.
+
+^ Ensuite, lors des visites suivantes, le navigateur rejettera tout certificat émis par d'autres AC.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0027](https://user-images.githubusercontent.com/3305685/113414904-4d9aec00-93be-11eb-8e62-92e9bad94f5e.jpg)
+
+^ De manière très similaire, il existe une extension d'épinglage de clé publique pour HTTP ou HPKP.
+
+^ Cette fonctionnalité indique à un navigateur web la liste des clés appropriées à associer au site web.
+
+^ Et elle peut empêcher les attaques de type "man-in-the-middle" avec de faux certificats.
+
+^ Lorsque le navigateur visite un site Web pour la première fois, il envoie une liste de hachages de clés publiques.
+
+^ Lors des visites suivantes, le navigateur s'attend à ce que le serveur utilise une ou plusieurs de ces clés publiques dans ses certificats.
+
+---
+
+![4  Course Notes Advanced Web SecurityP3_page-0028](https://user-images.githubusercontent.com/3305685/113414905-4d9aec00-93be-11eb-808f-4938707f80e1.jpg)
+
+^ Un autre problème lié à la falsification des certificats consiste à rendre les autorités de certification transparentes.
+
+^ En d'autres termes, les AC doivent publier dans un registre public tous les certificats qu'elles ont émis et un navigateur n'acceptera un certificat que s'il est publié dans un registre public.
+
+^ Des entreprises comme Google peuvent constamment scanner les journaux publics afin de rechercher des certificats invalides ou falsifiés.
+
+---
+
+# Ressources
+
+- [udacity.com > Network Security UD199](https://www.udacity.com/course/network-security--ud199)
+
+- [udemy.com > Complete Ethical Hacking Bootcamp](https://www.udemy.com/course/complete-ethical-hacking-bootcamp-zero-to-mastery/)
+
+- [cs.cornell.edu > Taxonomy CCR](http://www.cs.cornell.edu/courses/cs619/2004fa/documents/taxonomy-ccr.pdf)
+
+- [napsis.fr > Réseau Modele OSI](https://www.napsis.fr/actualite/reseau-modele-osi/)
+
+- [cloudflare.com > What is HTTPS?](https://www.cloudflare.com/fr-fr/learning/ssl/what-is-https/)
+
+- [cloudflare.com > DNS Amplification DDOS Attack](https://www.cloudflare.com/fr-fr/learning/ddos/dns-amplification-ddos-attack/)
+
+- [transparencyreport.google.com > HTTPS Overview](https://transparencyreport.google.com/https/overview)
+
+- [fr.wikipedia.org > Cryptographie Asymétrique](https://fr.wikipedia.org/wiki/Cryptographie_asym%C3%A9trique)
+
+- [cert-ist.com > Syn Cookies](https://www.cert-ist.com/public/fr/SO_detail?code=Syn_Cookies)
