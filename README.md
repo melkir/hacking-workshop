@@ -19,6 +19,8 @@ Double click on the `kali-linux-2021.1-vbox-amd64.ova` file, this should open Vi
 
 Follow the quick-start instructions that correspond to your operating system. For simplicity, we'll use the prebuit images.
 
+Or alternatively, you can download the pre-configured images with a torrent client such as transmission. Then you just have to click on the following link: [VirtualBox OVA](magnet:?xt=urn:btih:4bcc7a3919e0980766ef523b1d8a75ac1df9b4ac&dn=VirtualBox%20OVA&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce)
+
 ## Configuration
 
 > VirtualBox
