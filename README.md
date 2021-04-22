@@ -186,6 +186,29 @@ $ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 2522 kali@127.0.0.1
 $ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 2523 vagrant@127.0.0.1
 ```
 
+**SSH Config (Optionnal)**
+
+Create aliases for hosts so that `ssh -p 2522 kali@127.0.0.1` becomes `ssh kali`.
+
+```
+# filename: .ssh/config
+
+Host kali
+    User kali
+    HostName 127.0.0.1
+    Port 2522
+
+Host ubuntu
+    User vagrant
+    HostName 127.0.0.1
+    Port 2523
+
+Host windows
+    User vagrant
+    HostName 127.0.0.1
+    Port 2524
+```
+
 **Host (Optionnal)**
 
 As we will often use IP addresses of machines through the workshop, you can also configure the hosts file to use aliases on the Kali Linux machine.
