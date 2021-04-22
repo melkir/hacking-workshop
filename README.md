@@ -20,6 +20,7 @@ Double click on the `kali-linux-2021.1-vbox-amd64.ova` file, this should open Vi
 Follow the quick-start instructions that correspond to your operating system. For simplicity, we'll use the prebuit images.
 
 Or alternatively, you can download the pre-configured images with a torrent client such as transmission. Then paste the following magnet link inside the client:
+
 ```
 magnet:?xt=urn:btih:4bcc7a3919e0980766ef523b1d8a75ac1df9b4ac&dn=VirtualBox%20OVA&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce
 ```
@@ -118,10 +119,11 @@ Then, you can configure port-forwarding (only required over NAT Network) in orde
 
 `Virtual Box` >> `Preferences...` >> `Network` >> `NatNetwork` >> `Port Forwarding`
 
-| Name       | Protocol | Host IP   | Host Port | Guest IP  | Guest Port |
-| ---------- | -------- | --------- | --------- | --------- | ---------- |
-| SSH Kali   | TCP      | 127.0.0.1 | 2522      | 10.0.2.4  | 22         |
-| SSH Ubuntu | TCP      | 127.0.0.1 | 2523      | 10.0.2.15 | 22         |
+| Name        | Protocol | Host IP   | Host Port | Guest IP  | Guest Port |
+| ----------- | -------- | --------- | --------- | --------- | ---------- |
+| SSH Kali    | TCP      | 127.0.0.1 | 2522      | 10.0.2.4  | 22         |
+| SSH Ubuntu  | TCP      | 127.0.0.1 | 2523      | 10.0.2.15 | 22         |
+| SSH Windows | TCP      | 127.0.0.1 | 2524      | 10.0.2.5  | 22         |
 
 <br />
 
@@ -144,6 +146,12 @@ $ ssh -p 2522 kali@127.0.0.1
 
 ```
 $ ssh -p 2523 vagrant@127.0.0.1
+```
+
+> Windows
+
+```
+$ ssh -p 2524 vagrant@127.0.0.1
 ```
 
 In order to avoid having to type the password for each SSH connection you can register your host machine as a trusted machine with Kali Linux and Metasploitable.
