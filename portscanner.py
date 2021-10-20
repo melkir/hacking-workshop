@@ -10,9 +10,12 @@ def scan(target, ports):
 def scan_port(ipaddress, port):
   try:
     # create socket
+    s = socket.socket()
     # connect to socket (ipaddress, port)
+    s.connect((ipaddress, port))
     print("[+] Port Opened " + str(port))
     # close socket
+    s.close()
   except:
     pass
 
