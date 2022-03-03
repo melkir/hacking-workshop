@@ -21,8 +21,6 @@ Double click on the `kali-linux-2021.1-vbox-amd64.ova` file, this should open Vi
 
 Follow the quick-start instructions that correspond to your operating system. For simplicity, we'll use the prebuit images.
 
-Or alternatively, you can download the pre-configured images for VMWare and VirtualBox on my [Google Drive](https://drive.google.com/drive/folders/1fqqGbziQtFiLb6BdopqPWmp3cYmZ7kCV?usp=sharing).
-
 ## Configuration
 
 > VirtualBox
