@@ -5,6 +5,7 @@ This workshop is inspired from [Complete Ethical Hacking Bootcamp 2021: Zero to 
 > Learn Ethical Hacking + Penetration Testing! Use real techniques by black hat hackers then learn to defend against them!
 
 Presentation PDF: https://drive.google.com/file/d/1INQJDxII_ktZ9v7_7kUisWQCjjjt-QfK/view?usp=sharing
+
 Wiki: https://github.com/melkir/hacking-workshop/wiki
 
 ## Requirements
